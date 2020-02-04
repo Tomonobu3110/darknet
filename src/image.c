@@ -279,10 +279,11 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
             rgb[2] = blue;
             box b = dets[i].bbox;
             //printf("%f %f %f %f\n", b.x, b.y, b.w, b.h);
-            printf("%d %d %d %d %d %d\n",
+            printf("%d %d %d %d %d %d %d %d\n",
                    (int)(b.x * 100.0), (int)(b.y * 100.0),
                    (int)(b.w * 100.0), (int)(b.h * 100.0),
-                   (int)((b.x + b.w) * 100), (int)((b.y + b.h) * 100));
+                   (int)((b.x - (b.w / 2.0)) * 100), (int)((b.y - (b.h / 2.0)) * 100),  // left, top
+                   (int)((b.x + (b.w / 2.0)) * 100), (int)((b.y + (b.h / 2.0)) * 100)); // right, bottom
 
             int left  = (b.x-b.w/2.)*im.w;
             int right = (b.x+b.w/2.)*im.w;
